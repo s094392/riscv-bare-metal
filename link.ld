@@ -22,6 +22,13 @@ SECTIONS
     PROVIDE(_text_end = .);
   } >ram AT>ram :text
 
+  .sdata : {
+    _gp = . + 0x800;
+    *(.srodata.cst16) *(.srodata.cst8) *(.srodata.cst4) *(.srodata.cst2)
+    *(.srodata*)
+    *(.sdata .sdata.* .gnu.linkonce.s.*)
+  }
+
   .rodata : {
     PROVIDE(_rodata_start = .);
     *(.rodata .rodata.*)
