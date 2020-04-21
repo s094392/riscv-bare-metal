@@ -3,9 +3,6 @@
 
     .global _start
 _start:
-    la     t0, trap_entry
-    csrw   mtvec, t0
-
     csrr   t0, mhartid
     lui    t1, 0
     beq    t0, t1, 2f
@@ -20,6 +17,8 @@ _start:
     # initialize stack pointer
     la sp, stack_top
   
+    la     t0, trap_entry
+    csrw   mtvec, t0
     lla t0, 1f
     csrw mepc, t0
     mret
@@ -46,8 +45,7 @@ trap_entry:
     sw t4, 13*REGBYTES(sp)
     sw t5, 14*REGBYTES(sp)
     sw t6, 15*REGBYTES(sp)
-  
-    mv      a0, sp
+
     jal handle_trap
   
     lw ra, 0*REGBYTES(sp)

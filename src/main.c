@@ -8,8 +8,7 @@ int main() {
     print_s("Raise exception to enable timer...\n");
     asm volatile("ecall");
     print_s("Back to user mode\n");
-    do {
-        asm volatile("nop");
-    } while (1);
+    while (1)
+        ;
     return 0;
 }
