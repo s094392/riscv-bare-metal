@@ -1,4 +1,3 @@
-#include "encoding.h"
 .equ REGBYTES, 8
 .equ STACK_SIZE,  ((1 << 12) - 128) 
 
@@ -29,7 +28,7 @@ _start:
     
 .align 2
 trap_entry:
-    addi sp, sp, -16*4
+    addi sp, sp, -17*4
   
     sw ra, 0*REGBYTES(sp)
     sw a0, 1*REGBYTES(sp)
@@ -48,8 +47,7 @@ trap_entry:
     sw t5, 14*REGBYTES(sp)
     sw t6, 15*REGBYTES(sp)
   
-    csrr a0, mcause
-    csrr a1, mepc
+    mv      a0, sp
     jal handle_trap
   
     lw ra, 0*REGBYTES(sp)
@@ -69,7 +67,7 @@ trap_entry:
     lw t5, 14*REGBYTES(sp)
     lw t6, 15*REGBYTES(sp)
 
-    addi sp, sp, 16*4
+    addi sp, sp, 17*4
 
     mret
 

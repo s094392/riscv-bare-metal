@@ -33,7 +33,7 @@ clean:
 	rm -f $(BDIR)/*_asm.o $(BDIR)/*.o kernel.elf kernel.img
 
 run: all
-	qemu-system-riscv64 -M virt -kernel kernel.img -serial stdio
+	qemu-system-riscv64 -M virt -kernel kernel.img -serial stdio -display none
 
 debug: all
 	qemu-system-riscv64 -M virt -kernel kernel.img -serial stdio -s -S

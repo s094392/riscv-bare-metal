@@ -5,10 +5,11 @@
 int main() {
     uart_init();
     print_s("Hello world!\n");
+    print_s("Raise exception to enable timer...\n");
     asm volatile("ecall");
-    asm volatile("back:");
-    print_s("Back to main\n");
-    while (1)
-        ;
+    print_s("Back to user mode\n");
+    do {
+        asm volatile("nop");
+    } while (1);
     return 0;
 }
