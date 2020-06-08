@@ -1,4 +1,4 @@
-# RISCV Example
+# RISCV Bare Metal
 A RISC-V bare-metal example with uart, exception and interrupt.
 
 ## Requirement
