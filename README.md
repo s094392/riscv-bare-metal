@@ -1,6 +1,8 @@
 # RISCV Bare Metal
 A RISC-V bare-metal example with uart, exception and interrupt.
 
+The tutorial is at [https://muller.nctu.me/2020/07/09/riscv-exception-interrupt/](https://muller.nctu.me/2020/07/09/riscv-exception-interrupt/)
+
 ## Requirement
 - qemu
 - riscv64-linux-gnu-*
