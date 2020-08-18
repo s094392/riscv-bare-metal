@@ -1,4 +1,3 @@
-#include "encoding.h"
 #include "riscv.h"
 #include "uart.h"
 #define CLINT_BASE 0x2000000

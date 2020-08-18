@@ -1,4 +1,5 @@
-#include "encoding.h"
+#include <timer.h>
+
 #include "trap.h"
 #include "uart.h"
 

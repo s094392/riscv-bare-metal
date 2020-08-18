@@ -9,9 +9,9 @@ BDIR = build
 CFLAGS = -Wall -mcmodel=medany -g -I $(IDIR) -O0
 SFLAGS = -g -I $(IDIR) 
 OBJCOPY = $(ARM)-objcopy
-S_SRCS = $(wildcard $(SDIR)/*.S)
+S_SRCS = $(wildcard $(SDIR)/*.s)
 C_SRCS = $(wildcard $(SDIR)/*.c)
-S_OBJS = $(S_SRCS:$(SDIR)/%.S=$(BDIR)/%_asm.o)
+S_OBJS = $(S_SRCS:$(SDIR)/%.s=$(BDIR)/%_asm.o)
 C_OBJS = $(C_SRCS:$(SDIR)/%.c=$(BDIR)/%.o)
 
  
