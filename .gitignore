@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/c,assembler
 # Edit at https://www.gitignore.io/?templates=c,assembler
+### Vim ###
+.vim
 
 ### Assembler ###
 *.exe
