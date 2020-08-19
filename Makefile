@@ -7,22 +7,22 @@ IDIR = inc
 SDIR = src
 BDIR = build
 CFLAGS = -Wall -mcmodel=medany -g -I $(IDIR) -O0
-SFLAGS = -g -I $(IDIR) 
+SFLAGS = -g -I $(IDIR)
 OBJCOPY = $(ARM)-objcopy
 S_SRCS = $(wildcard $(SDIR)/*.s)
 C_SRCS = $(wildcard $(SDIR)/*.c)
 S_OBJS = $(S_SRCS:$(SDIR)/%.s=$(BDIR)/%_asm.o)
 C_OBJS = $(C_SRCS:$(SDIR)/%.c=$(BDIR)/%.o)
 
- 
-all: clean kernel.img 
+
+all: clean kernel.img
 
 kernel.img: kernel.elf
 	$(OBJCOPY) kernel.elf -I binary kernel.img
 
 kernel.elf: $(S_OBJS) link.ld $(C_OBJS)
 	$(LD) -T link.ld -o kernel.elf $(S_OBJS) $(C_OBJS)
-	
+
 $(BDIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -36,4 +36,6 @@ run: all
 	qemu-system-riscv64 -M virt -kernel kernel.img -bios none -serial stdio -display none
 
 debug: all
-	qemu-system-riscv64 -M virt -kernel kernel.img -bios none -serial stdio -s -S
+	terminator -e "qemu-system-riscv64 -M virt -kernel kernel.img -bios none -serial stdio -s -S" --new-tab
+	terminator -e "riscv64-linux-gnu-gdb -x debug.txt" --new-tab
+

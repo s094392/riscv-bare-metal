@@ -52,4 +52,5 @@ SECTIONS
   PROVIDE(_memory_end = ORIGIN(ram) + LENGTH(ram));
   . += 0x8000;
   stack_top = .;
+  end = .;
 }
