@@ -24,3 +24,9 @@ void kfree(uint8_t *pa) {
     r->next = freelist;
     freelist = r;
 }
+
+void *kalloc() {
+    void *pa = freelist;
+    freelist = freelist->next;
+    return pa;
+}
