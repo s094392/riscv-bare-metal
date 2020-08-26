@@ -5,3 +5,4 @@ struct run_t {
 
 void kinit();
 void kfree(uint8_t* pa);
+void* kalloc();
