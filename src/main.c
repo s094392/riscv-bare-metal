@@ -8,7 +8,7 @@
 int main() {
     uart_init();
     kinit();
-    kviminit();
+    kvminit();
     kvminithart();
     print_s("Hello world!\n");
     timer_init();

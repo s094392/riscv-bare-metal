@@ -5,10 +5,10 @@
 #include "riscv.h"
 #include "stdint.h"
 
-extern uint8_t end[];
+extern uint8_t etext[];
 pagetable_t k_pagetable;
 
-void kviminit() {
+void kvminit() {
     k_pagetable = (pagetable_t)kalloc();
     c_memset(k_pagetable, 0, PGSIZE);
 
@@ -25,7 +25,11 @@ void kviminit() {
     kvmmap(PLIC, PLIC, 0x400000, PTE_R | PTE_W);
 
     // map kernel text executable and read-only.
-    kvmmap(KERNBASE, KERNBASE, PGSIZE * 30, PTE_W | PTE_R | PTE_X);
+    kvmmap(KERNBASE, KERNBASE, (uint64_t)etext - KERNBASE, PTE_R | PTE_X);
+
+    // map kernel data and the physical RAM we'll make use of.
+    kvmmap((uint64_t)etext, (uint64_t)etext, PHYSTOP - (uint64_t)etext,
+           PTE_R | PTE_W);
 }
 
 void kvmmap(uint64_t va, uint64_t pa, uint64_t sz, int perm) {

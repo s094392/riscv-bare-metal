@@ -22,6 +22,9 @@ SECTIONS
     PROVIDE(_text_end = .);
   } >ram AT>ram :text
 
+  . = ALIGN(0x1000);
+  etext = .;
+
   .sdata : {
     _gp = . + 0x800;
     *(.srodata.cst16) *(.srodata.cst8) *(.srodata.cst4) *(.srodata.cst2)
@@ -34,6 +37,7 @@ SECTIONS
     *(.rodata .rodata.*)
     PROVIDE(_rodata_end = .);
   } >ram AT>ram :text
+  
 
   .data : {
     . = ALIGN(4096);
