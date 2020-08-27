@@ -12,8 +12,8 @@ struct run_t *freelist;
 // construct the freelist from end of the text to PHYSTOP
 void kinit() {
     uint8_t *p;
-    for (p = (uint8_t *)PGUP((uint64_t)end); (uint64_t)p + PGSIZE <= PHYSTOP;
-         p += PGSIZE) {
+    for (p = (uint8_t *)(PHYSTOP - PGSIZE); p >= (uint8_t *)PGUP((uint64_t)end);
+         p -= PGSIZE) {
         kfree(p);
     }
 }

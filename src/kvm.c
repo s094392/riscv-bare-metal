@@ -64,5 +64,5 @@ pte_t *walk(pagetable_t pagetable, uint64_t va, int alloc) {
 
 void kvminithart() {
     w_satp(MAKE_SATP(k_pagetable));
-    //    sfence_vma();
+    sfence_vma();
 }
