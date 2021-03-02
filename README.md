@@ -9,12 +9,14 @@ The tutorial is at [https://mullerlee.cyou/2020/07/09/riscv-exception-interrupt/
 
 ## Run
 ```bash
+mkdir build
 make
 make run
 ```
 
 ## Debug
 ```bash
+mkdir build
 make
 make debug
 riscv64-linux-gnu-gdb -x debug.txt
