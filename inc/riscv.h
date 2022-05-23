@@ -17,14 +17,6 @@ static inline uint64_t r_mhartid() {
     return x;
 }
 
-// Machine Status Register, mstatus
-
-#define MSTATUS_MPP_MASK (3L << 11)  // previous mode.
-#define MSTATUS_MPP_M (3L << 11)
-#define MSTATUS_MPP_S (1L << 11)
-#define MSTATUS_MPP_U (0L << 11)
-#define MSTATUS_MIE (1L << 3)  // machine-mode interrupt enable.
-
 static inline uint64_t r_mstatus() {
     uint64_t x;
     asm volatile("csrr %0, mstatus" : "=r"(x));
@@ -69,6 +61,14 @@ static inline uint64_t r_sip() {
 
 static inline void w_sip(uint64_t x) {
     asm volatile("csrw sip, %0" : : "r"(x));
+}
+
+static inline void w_pmpcfg0(uint64_t x) {
+    asm volatile("csrw pmpcfg0, %0" : : "r"(x));
+}
+
+static inline void w_pmpaddr0(uint64_t x) {
+    asm volatile("csrw pmpaddr0, %0" : : "r"(x));
 }
 
 // Supervisor Interrupt Enable

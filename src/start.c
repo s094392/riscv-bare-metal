@@ -20,6 +20,10 @@ void start() {
     // disable paging for now.
     w_satp(0);
 
+    // physical memory protection
+    w_pmpcfg0(0xf);
+    w_pmpaddr0(0xffffffffffffffff);
+
     // delegate all interrupts and exceptions to supervisor mode.
     w_medeleg(0xffff);
     w_mideleg(0xffff);
